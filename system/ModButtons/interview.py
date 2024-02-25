@@ -20,7 +20,7 @@ class InterviewButtons(disnake.ui.Button):
         embed.set_footer(text=f"Рассматривает: {interaction.author.display_name}", icon_url=interaction.author.display_avatar)
         await interaction.message.edit(embed=embed, view=None)
         embed2 = disnake.Embed(color=Color.GRAY,
-                            title="Ваша заявка отклонена!",
+                            title="Ваша заявка рассматривается!",
                             description=f"{interaction.author.mention}, ваша заявка на стафф сервера **{interaction.guild.name}** рассматривается.\n"
                                         f"Вы приглашены на обзвон {interaction.author.mention}").set_thumbnail(url=member.avatar.url)
         try:
