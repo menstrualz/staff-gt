@@ -1,17 +1,11 @@
 import disnake
-from assets.enums import RolesIds
-from system.Modals.request import Modal
+from system.Buttons.base_buttons import BaseButton
 
 
-class CreativeButtons(disnake.ui.Button):
+class CreativeButtons(BaseButton):
     def __init__(self, bot):
         self.bot = bot
-        super().__init__(label="Creative", custom_id="creative_button")
+        super().__init__(bot, label="Creative", custom_id="creative_button")
 
     async def callback(self, interaction: disnake.MessageInteraction):
-        member = interaction.guild.get_member(interaction.user.id)
-        role = interaction.guild.get_role(RolesIds.AWAITING.value)
-        if role in member.roles:
-            await interaction.response.send_message("Вы уже имеете активную заявку, наберитесь терпения!", ephemeral=True)
-            return
-        await interaction.response.send_modal(Modal(self.bot, f"{self.label}"))
+        await self.common_callback(interaction)
